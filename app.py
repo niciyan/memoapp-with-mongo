@@ -31,7 +31,7 @@ class PostForm(FlaskForm):
 @app.route('/')
 def index():
     page = request.args.get("page", default=1, type=int)
-    posts = Post.objects.paginate(page=page, per_page=10).items
+    posts = Post.objects.order_by("-created_at").paginate(page=page, per_page=10).items
     return render_template('index.html', posts=posts)
 
 @app.route('/add', methods=["GET", "POST"])
