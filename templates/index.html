@@ -1,0 +1,9 @@
+{% extends "layout.html" %}
+
+{% block page_content %}
+{% for post in posts %}
+<h3>{{ post.title }}</h3>
+<p>{{ post.content }}</p>
+<p>{{ post.created_at }}</p>
+{% endfor %}
+{% endblock %}
