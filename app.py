@@ -18,7 +18,7 @@ app.debug = True
 class Post(db.Document):
     title = db.StringField(max_length=100, required=True)
     content = db.StringField(max_length=200, required=True)
-    # tags = db.ListField(db.StringField(max_length=20))
+    tags = db.ListField(db.StringField(max_length=10), mix_entries=1)
     created_at = db.DateTimeField(default=datetime.datetime.now)
 
 # PostForm = model_form(Post)
@@ -42,6 +42,17 @@ def add():
         flash('post added!')
         return redirect(url_for("index"))
     return render_template('add.html', form=form)
+
+@app.route('/delete')
+def delete():
+    # id come from url param
+    _id = request.args.get('id',type=str)
+    post = Post.objects.get(id=_id)
+    post.delete()
+    # post = Post(id).delete()
+    flash("the post deleted")
+    return redirect(url_for("index"))
+
 
 
 if __name__ == '__main__':
