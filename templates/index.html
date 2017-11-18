@@ -2,14 +2,6 @@
 
 {% block page_content %}
 {% for post in posts %}
-<div class="post">
-	<h1>{{ post.title }}</h1>
-	<p>{{ post.content }}</p>
-	<p>{{ post.created_at }}</p>
-	<a href="{{ url_for('delete', id=post.id) }}">
-		<button class="btn btn-primary">delete</button>
-	</a>
-	
-</div>
+{% include "_post.html" %}
 {% endfor %}
 {% endblock %}
