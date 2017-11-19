@@ -1,29 +1,23 @@
 <div class="post">
 	<div class="columns">
 		<div class="column">
-			<h3>{{ post.title }}</h3>
-			<p>{{ post.content|replace('\r\n', '<br>')|safe }}</p>
-			<div class="post-date">
-				<p>{{ post.created_at }}</p>
-			</div>
+			{% include '_postview.html' %}
 		</div>
 	</div>
 	<a href="{{ url_for('main.delete', id=post.id) }}">
-		<button class="btn btn-primary bg-dark">Delete</button>
+		<span class="label label-error">消去</span>
 	</a>
 
 	{% if post.memo %}
-	<!-- <a href="{{ url_for('main.create_memo', _id=post.id) }}"> -->
-	<!-- </a> -->
 	<div class="popover popover-right">
-		<button class="btn btn-primary bg-warning">View Memo</button>
+		<span class="label label-success">メモ</span>
 		<div class="popover-container">
 			<div class="card">
 				<div class="card-header">{{ post.memo.tag }}</div>
-				<div class="card-body">{{ post.memo.body|replace('\r\n', '<br>')|safe }}</div>
+				<div class="card-body">{{ post.memo.body }}</div>
 				<div class="card-footer">
 					<a href="{{ url_for('main.edit_memo', _id=post.id) }}">
-						<button class="btn btn-primary">Edit Memo</button>
+						<span class="label label-primary">編集</span>
 					</a>
 				</div>
 			</div>
@@ -33,7 +27,7 @@
 
 	{% if not post.memo %}
 	<a href="{{ url_for('main.create_memo', _id=post.id) }}">
-		<button class="btn btn-primary bg-warning">Create Memo</button>
+		<span class="label ">メモをつける</span>
 	</a>
 	{% endif %}
 

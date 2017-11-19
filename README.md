@@ -2,9 +2,17 @@
 
 I made this app for reminding flask-mongoengine with MongoDB
 
+### System requirement
+* Python3
+* MongoDB
 
-### todo
+
+### Todo
 * models.DoesNotExist Post.objects.get error handling
 * form validation handling
 * jinja2.exceptions.TemplateSyntaxError error handling
 * add login fuctionality
+* improve form 
+* xss( can protect by default jinja usage )
+* fask-script
+* sanitizing(server side)
