@@ -29,7 +29,7 @@
 		<div class="off-canvas-sidebar">
 			<ul class="menu menu-nav">
 				<li class="menu-item">
-					<a href="{{ url_for('.index') }}">
+					<a href="{{ url_for('main.index') }}">
 						<div class="tile tile-centered">
 							<div class="tile-icon">
 								<button class="btn btn-primary">
@@ -41,7 +41,7 @@
 					</a>
 				</li>
 				<li class="menu-item">
-					<a href="{{ url_for('.add') }}">
+					<a href="{{ url_for('main.add') }}">
 						<div class="tile tile-centered">
 							<div class="tile-icon">
 								<button class="btn btn-primary">
@@ -57,8 +57,15 @@
 		<div class="off-canvas-content">
 			<div class="columns">
 				<div class="column col-11 col-mx-auto">
-					{% block page_content %}
-					{% endblock %}
+				{% with messages = get_flashed_messages() %}
+					{% if messages %}
+						{% for message in messages %}
+							<h2 class="text-warning">{{ message }}</h2>
+						{% endfor %}
+					{% endif %}
+				{% endwith %}
+				{% block page_content %}
+				{% endblock %}
 				</div>
 			</div>
 		</div>
